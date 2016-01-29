@@ -1,4 +1,4 @@
-// The Capitalize Words function takes any sentence and capitalizes the first letter of each word
+// The Capitalize Words function takes any sentence and capitalizes the first letter of each word in the sentence
 
 function capitalizeWords(str) {
   var strArray = str.toLowerCase().split(" ");
