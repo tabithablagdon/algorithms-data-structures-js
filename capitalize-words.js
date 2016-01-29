@@ -7,8 +7,7 @@ function capitalizeWords(str) {
     word = word.charAt(0).toUpperCase() + word.slice(1);
     strArray[i] = word;
   }
-  var newStr = strArray.join(" ");
-  return newStr;
+  return strArray.join(" ");
 };
 
-capitalizeWords("I'm a little tea pot");
+capitalizeWords("I am cApitalizing the first letter of eVerY word!");
