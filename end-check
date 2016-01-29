@@ -8,4 +8,4 @@ function end(str, target) {
   return subString === target;
 }
 
-end("Baasdasd assaf dsfsdf stian mean", "mean");
+end("Baasdasd assaf dsfsdf stian mean", "mean"); // returns true;
