@@ -1,10 +1,12 @@
 /* 
-Function myReplace replaces a sentence using the arguments provided and return the new sentence.
+Coded by Tee Blagdon
+
+Function myReplace replaces a sentence using the arguments provided and return the new sentence
 First argument is the sentence to perform the search and replace on.
 Second argument is the word that you will be replacing (before).
 Third argument is what you will be replacing the second argument with (after).
-NOTE: Preserve the upper case of the original word when you are replacing it. For example if you mean to replace the word "Book" with the word 
-"dog", it should be replaced as "Dog"
+myReplace() will preserve the first upper case letter of the original word when you are replacing it. 
+For example if you mean to replace the word "Book" with the word "dog", it should be replaced as "Dog."
 */
 
 function myReplace(str, before, after) {
