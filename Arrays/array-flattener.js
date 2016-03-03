@@ -1,15 +1,10 @@
-// Function flattener will reduce an array of arrays into a single array.  EJ Chapter 5 exercise.
+// Function flattener will reduce nested arrays into a single array.
 
-var arrays = [[1, 2, 3], [4, 5], [6, 7, 8, 9, 10]];
+var flatten = function(nestedArray) {
 
-function flattener(array) {
-
-  var newArray = array.reduce(function(a, b) {
-    return a.concat(b)});
-  
-  console.log(newArray);
+    return nestedArray.reduce(function(flat, toFlatten) {
+        return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+    }, []);
 };
 
-flattener(arrays);
-
-// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+flatten([1, [2], [3, [[4]]]]); //-> [1, 2, 3, 4]
