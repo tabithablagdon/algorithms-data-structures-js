@@ -1,4 +1,5 @@
-/* arrayWithout() takes an array list input and an unlimited number of values.  Returns  new array with those values removed. */
+/* arrayWithout() takes an array list input and an unlimited number of values.  Returns  new array with those values removed. 
+Code by tee. */
 
 var arrayWithout = function(array, ...args) {
     var theArgs = args;
