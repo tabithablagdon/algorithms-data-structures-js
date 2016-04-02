@@ -1,2 +1,3 @@
 # JavaScript-Functions
-Collection of basic JavaScript functions and algorithms that I've written to solve coding challenges and to build web applications.
+
+Collection of JavaScript utlity functions, methods, algorithms, and simple games that I've written to learn JavaScript
