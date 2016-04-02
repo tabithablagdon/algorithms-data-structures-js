@@ -1,35 +1,33 @@
-function multTable() {
+// multTable takes an input 'n' and creates a n by n multiplication table, formatted nicel
+
+function multTable(n) {
     
   var rows = 1; // rows counter
   var columns = 1; // columns counter
   var line = ""; // accumulates numbers for each row
   var num = 1; 
   
-  while (columns <= 12) {
-      while (rows <= 12) {
-          num = rows * columns;
-          if (num < 10) {
-              line += num + "   ";
-          }
-          else if (num < 100) {
-              line += num + "  ";
-          }
-          else {
-            line += num + " ";
-          }
-          rows++;
-      }
-      line = line.slice(0, line.length-1);
-      
-      console.log(line);
-      
-      columns++;
-      rows = 1; // reset rows
-      line = ""; //reset line
+  while (columns <= n) {
+    while (rows <= n) {
+	  num = rows * columns;
+	  if (num < 10) {
+	    line += num + "   ";
+	  } else if (num < 100) {
+	    line += num + "  ";
+	  } else {
+	    line += num + " ";
+	  }
+	  rows++;
+    }
+	line = line.slice(0, line.length-1);
+	console.log(line);
+	columns++;
+	rows = 1; // reset rows
+	line = ""; //reset line
   }
-};
+}
 
-multTable();
+multTable(12);
 
 
 /* Output
