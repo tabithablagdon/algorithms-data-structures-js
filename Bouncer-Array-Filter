@@ -1,9 +1,11 @@
 // Bouncer function filters out any falsey strings, such as false, null, undefined, "", and NaN
 
-function bouncer(string) {
-
+var bouncer = function(string) {
   string = string.filter(Boolean);
   return string;
 };
 
-bouncer(["a", "b", "c"]);
+//test case
+
+bouncer(['a', null, undefined, 'b', 3, false, true, {}]);
+// => [ 'a', 'b', 3, true, {} ]
