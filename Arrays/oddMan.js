@@ -19,13 +19,9 @@ Assume that:
 */
 
 var oddMan = function(A) {
-  A = A.sort();
   var result;
   for (var i = 0; i < A.length; i+=2) {
-  	if (A[i] !== A[i+1]) {
-  	  result = A[i];
-  	  break;
-  	}
+  	result ^= A[i];
   }
   return result;
 };
