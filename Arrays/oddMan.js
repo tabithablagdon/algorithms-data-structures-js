@@ -1,7 +1,6 @@
 /* 
 
-Time Complexity: O(N**2)
-TO DO: Re-write in O(N) complexity
+Time Complexity: O(N)
 
 oddMan(A) - given an array A consisting of N integers returns the value of the unpaired element - the oddman.
 
@@ -20,22 +19,17 @@ Assume that:
 */
 
 var oddMan = function(A) {
-  var oddman;
-  var index;
-  var currentNum;
-  
-  while (A.length > 1) {
-  	currentNum = A.shift();
-  	index = A.indexOf(currentNum);
-  	if (index < 0) {
-  	  oddman = currentNum;
+  A = A.sort();
+  var result;
+  for (var i = 0; i < A.length; i+=2) {
+  	if (A[i] !== A[i+1]) {
+  	  result = A[i];
   	  break;
-  	} else {
-  	  A.splice(index, 1);	
   	}
   }
-  return oddman ? oddman : A[0];
+  return result;
 };
+
 
 var arr = [2, 3, 4, 5, 5, 1, 4, 3, 2];
 
