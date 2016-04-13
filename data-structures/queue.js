@@ -15,7 +15,15 @@ Queue.prototype = (function() {
  };
  
  var dequeue = function() {
-   return this.dataStore.shift();	
+   var priority = 0;
+   var minCode = this.dataStore[0].code;
+   for (var i = 1; i < this.dataStore.length; i++) {
+     if (this.dataStore[i].code < minCode) {
+       minCode = this.dataStore[i].code;
+       priority = i;
+     }
+   }
+   return this.dataStore.splice(priority, 1);
  };
  
  var front = function() {
@@ -30,12 +38,12 @@ Queue.prototype = (function() {
    return this.dataStore.length === 0 ? true : false;	
  };
 
-  return {
-	enqueue: enqueue,
-	dequeue: dequeue,
-	front: front,
-	back: back,
-	empty: empty
-  };
-	
+ return {
+   constructor: 'Queue',
+   enqueue: enqueue,
+   dequeue: dequeue,
+   front: front,
+   back: back,
+   empty: empty
+ };
 })();
