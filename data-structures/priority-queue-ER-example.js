@@ -5,19 +5,19 @@ var Queue = function() {
 };
 
 Queue.prototype = (function() {
-
  var enqueue = function(element) {
    this.dataStore.push(element);	
  };
  
- var dequeue = function() {
+ // Difference between regular queue and priority queue is the dequeue method
+ var dequeue = function() { 
    var priority = 0;
    var minCode = this.dataStore[0].code;
    for (var i = 1; i < this.dataStore.length; i++) {
-  	 if (this.dataStore[i].code < minCode) {
-  	   minCode = this.dataStore[i].code;
-  	   priority = i;
-  	 }
+     if (this.dataStore[i].code < minCode) {
+       minCode = this.dataStore[i].code;
+       priority = i;
+     }
    }
    return this.dataStore.splice(priority, 1);
  };
@@ -34,14 +34,14 @@ Queue.prototype = (function() {
    return this.dataStore.length === 0 ? true : false;	
  };
 
-  return {
-	enqueue: enqueue,
-	dequeue: dequeue,
-	front: front,
-	back: back,
-	empty: empty
-  };
-	
+ return {
+   constructor: 'Queue',
+   enqueue: enqueue,
+   dequeue: dequeue,
+   front: front,
+   back: back,
+   empty: empty
+ };
 })();
 
 // Emergency room has patient's that check in - code assigned to them based on priority
