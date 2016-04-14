@@ -13,7 +13,7 @@ var LList = function() {
 };
 
 LList.prototype = {
-  constructor: 'LList',
+  constructor: LList,
   find: function(item) {
   	var currNode = this.head;
   	while (currNode.element !== item) {
