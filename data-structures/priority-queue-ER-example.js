@@ -35,7 +35,7 @@ Queue.prototype = (function() {
  };
 
  return {
-   constructor: 'Queue',
+   constructor: Queue,
    enqueue: enqueue,
    dequeue: dequeue,
    front: front,
