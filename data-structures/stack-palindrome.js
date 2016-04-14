@@ -28,7 +28,7 @@ Stack.prototype = (function(){
   };
   
   return {
-    constructor: 'Stack',
+    constructor: Stack,
     push: push,
     pop: pop,
     peek: peek,
