@@ -25,7 +25,7 @@ var List = function() {
 };
 
 List.prototype = {
-  constructor: 'List',
+  constructor: List,
   append: function(element) {
   	this.dataStore[this.listSize++] = element;
   },
