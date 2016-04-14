@@ -36,6 +36,7 @@ Dequeue.prototype = (function() {
  };
 
   return {
+  	constructor: Dequeue;
 	enqueueFront: enqueueFront,
 	enqueueBack: enqueueBack,
 	dequeueFront: dequeueFront,
