@@ -10,6 +10,16 @@ Dictionary.prototype = (function() {
   	this.dataStore[key] = value;
   };
   
+  var clear = function() {
+  	for (var key in this.dataStore) {
+  	  delete this.dataStore[key];	
+  	}
+  };
+  
+  var count = function() {
+    return Object.keys(this.dataStore).length;	
+  };
+  
   var find = function(key) {
   	return this.dataStore[key];
   };
@@ -27,6 +37,8 @@ Dictionary.prototype = (function() {
   return {
   	constructor: Dictionary, 
   	add: add, 
+  	clear: clear, 
+  	count: count, 
   	find: find, 
   	remove: remove, 
   	showAll: showAll
@@ -54,9 +66,15 @@ console.log("Brian's phone number is: " + phonebook.find('Brian'));
 
 phonebook.remove('Laurel');
 phonebook.showAll();
-
 /*
 => Brian -> 707-231-4234
 Chris -> 707-834-0285
 Jack -> 916-344-9906
 */
+
+phonebook.count();
+// => 3
+
+phonebook.clear();
+phonebook.count();
+// => 0
