@@ -35,13 +35,14 @@ Dequeue.prototype = (function() {
  };
 
   return {
-	enqueueFront: enqueueFront,
-	enqueueBack: enqueueBack,
-	dequeueFront: dequeueFront,
-	dequeueBack: dequeueBack,
-	front: front,
-	back: back,
-	empty: empty
+    constructor: Dequeue,
+    enqueueFront: enqueueFront,
+    enqueueBack: enqueueBack,
+    dequeueFront: dequeueFront,
+    dequeueBack: dequeueBack,
+    front: front,
+    back: back,
+    empty: empty
   };
 
 })();
