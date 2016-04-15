@@ -1,5 +1,7 @@
 // Dictionary implementation using Arrays
 
+// Dictionary implementation using Arrays
+
 var Dictionary = function() {
   this.dataStore = [];	
 };
@@ -7,13 +9,13 @@ var Dictionary = function() {
 Dictionary.prototype = (function() {
 	
   var add = function(key, value) {
-  	this.dataStore[key] = value;
+    this.dataStore[key] = value;
   };
   
   var clear = function() {
-  	for (var key in this.dataStore) {
-  	  delete this.dataStore[key];	
-  	}
+    for (var key in this.dataStore) {
+      delete this.dataStore[key];	
+    }
   };
   
   var count = function() {
@@ -21,27 +23,35 @@ Dictionary.prototype = (function() {
   };
   
   var find = function(key) {
-  	return this.dataStore[key];
+    return this.dataStore[key];
   };
   
   var remove = function(key) {
-  	delete this.dataStore[key];
+    delete this.dataStore[key];
   };
   
   var showAll = function() {
-  	for (var key in this.dataStore) {
-  	  console.log(key + ' -> ' + this.dataStore[key]);	
-  	}
+    for (var key in this.dataStore) {
+      console.log(key + ' -> ' + this.dataStore[key]);	
+    }
+  };
+  
+  var showAllSorted = function() {
+    var keys = Object.keys(this.dataStore).sort();
+    for (var key in keys) {
+      console.log(keys[key] + ' -> ' + this.dataStore[keys[key]]);	
+    }
   };
   
   return {
-  	constructor: Dictionary, 
-  	add: add, 
-  	clear: clear, 
-  	count: count, 
-  	find: find, 
-  	remove: remove, 
-  	showAll: showAll
+    constructor: Dictionary, 
+    add: add, 
+    clear: clear, 
+    count: count, 
+    find: find, 
+    remove: remove, 
+    showAll: showAll,
+    showAllSorted: showAllSorted
   }; 	
 })();
 
