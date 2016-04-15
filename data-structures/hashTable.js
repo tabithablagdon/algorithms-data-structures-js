@@ -6,15 +6,15 @@ var HashTable = function() {
   this.put = put;
 };
 
-// hash function that sums ASCII value of letters in the key
-// hash value is sum % array size
+// hash function that sums ASCII value of letters in the key using Horner's method
 
 var simpleHash = function(data) {
+  const H = 37; // Horner's method constant
   var total = 0;
   for (var i = 0; i < data.length; i++) {
-  	total += data.charCodeAt(i);
+  	total = (H * total + data.charCodeAt(i)) % this.table.length;
   }
-  return total % this.table.length;
+  return total;
 };
 
 // places data in hash table 
@@ -45,12 +45,13 @@ for (var i = 0; i < someNames.length; i++) {
 
 newTable.showDistro();
 /*
-=> 35: Cynthia
-45: Clayton
-57: Donnie
-77: David
-95: Danny
-116: Mike
-132: Jennifer
-134: Jonathan
+=> 10: Mike
+12: Danny
+72: David
+73: Jonathan
+88: Clayton
+92: Raymond
+104: Donnie
+109: Jennifer
+133: Cynthia
 */
