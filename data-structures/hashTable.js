@@ -4,6 +4,7 @@ var HashTable = function() {
   this.simpleHash = simpleHash;
   this.showDistro = showDistro;
   this.put = put;
+  this.get = get;
 };
 
 // hash function that sums ASCII value of letters in the key using Horner's method
@@ -21,6 +22,10 @@ var simpleHash = function(data) {
 var put = function(data) {
   var pos = this.simpleHash(data);
   this.table[pos] = data;
+};
+
+var get = function(key) {
+  return this.table[key];
 };
 
 // displays data from table
@@ -94,6 +99,7 @@ ID: 50803018 Grade: 72
 ID: 88873469 Grade: 64
 ID: 54281014 Grade: 70
 */
+
 
 // create hash table to store data and add student data
 var hTable = new HashTable();
