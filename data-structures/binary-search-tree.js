@@ -1,5 +1,3 @@
-// Simple abstract implementation of a binary search tree class BST containing number values
-
 var Node = function(data, left, right) {
   this.data = data;
   this.left = left;
@@ -9,6 +7,7 @@ var Node = function(data, left, right) {
 
 var BST = function() {
   this.root = null;
+  this.count = 0;
 };
 
 BST.prototype = (function(){
@@ -16,12 +15,10 @@ BST.prototype = (function(){
   var contains = function(data) {
     var found = false;
     var current = this.root;
-    
     // test for numerical value - change this depending on data types in BST
     if (isNaN(data)) {
       throw 'Error: Must enter a number into contains()'	
     }
-    
     while (!found && current) {
       if (data < current.data) {
       	current = current.left;
@@ -74,6 +71,7 @@ BST.prototype = (function(){
       	}
       }
     }
+    this.count++;
   };
   var inOrder = function(node) {
     if (node) {
@@ -99,6 +97,43 @@ BST.prototype = (function(){
   	}
   };
   
+  var remove = function(data) {
+    root = removeNode(this.root, data);
+    this.count--;
+  };
+  
+  var removeNode = function(node, data) {
+    if (!node) {
+      return null;
+    }
+    if (data === node.data) {
+      if (node.left === null && node.right === null) {
+        return null;	
+      }
+      if (node.left === null) {
+        return node.right;	
+      }
+      if (node.right === null) {
+        return node.left;	
+      }
+      var tempNode = getMin(node.right);
+      node.data = tempNode.data;
+      node.right = removeNode(node.right, tempNode.data);
+      return node;
+    } else if (data < node.data) {
+      node.left = removeNode(node.left, data);
+      return node;
+    } else {
+      node.right = removeNode(node.right, data);
+      return node;
+    }
+  };
+  
+  var size = function() {
+  	return this.count;
+  };
+  
+  
   return {
   	constructor: BST, 
   	contains: contains, 
@@ -107,7 +142,9 @@ BST.prototype = (function(){
   	inOrder: inOrder, 
   	insert: insert, 
   	preOrder: preOrder, 
-  	postOrder: postOrder
+  	postOrder: postOrder, 
+  	remove: remove,
+  	size: size
   }
 })();
 
@@ -151,7 +188,6 @@ newTree.postOrder(newTree.root);
 45
 23
 */
-
 newTree.getMin();
 // => 3
 newTree.getMax();
@@ -162,3 +198,6 @@ newTree.contains(22);
 // => true
 newTree.contains('name');
 // => Error: Must enter a number into contains()
+
+newTree.size()
+// => 7
