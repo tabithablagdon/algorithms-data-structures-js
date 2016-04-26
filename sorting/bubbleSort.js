@@ -1,18 +1,17 @@
 // bubbleSort has O(N^2) time complexity
 
 var bubbleSort = function(collection) {
-  var sorted = collection.slice(0);
   var temp;
-  for (var i = 0; i < sorted.length; i++) {
-    for (var j = 0; j < sorted.length; j++) {
-      if (sorted[j] > sorted[j+1]) {
-      	temp = sorted[j+1];
-      	sorted[j+1] = sorted[j];
-      	sorted[j] = temp;
+  for (var i = 0; i < collection.length; i++) {
+    for (var j = 0; j < collection.length; j++) {
+      if (collection[j] > collection[j+1]) {
+      	temp = collection[j+1];
+      	collection[j+1] = collection[j];
+      	collection[j] = temp;
       }  	
     }	
   }
-  return sorted;
+  return collection;
 };
 
 var arr = [1, 5, 2, 10, 3, 7, -2, -6];
