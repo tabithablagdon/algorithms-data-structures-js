@@ -1,4 +1,12 @@
-// bubbleSort has O(N^2) time complexity
+/* 
+Slowest sorting algorithm
+The bubble sort gets its name because when data are sorted using the algorithm, values
+float like a bubble from one end of the array to the other. Assuming you are sorting a
+set of numbers into ascending order, larger values float to the right of the array and
+lower values float to the left. 
+
+bubbleSort has O(N^2) time complexity
+*/
 
 var bubbleSort = function(collection) {
   var temp;
