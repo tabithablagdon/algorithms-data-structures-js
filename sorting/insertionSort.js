@@ -14,7 +14,6 @@ var insertionSort = function(collection) {
       	collection[i] = temp;
       }
     }
-    console.log(collection);
   }
   return collection;
 };
@@ -22,3 +21,10 @@ var insertionSort = function(collection) {
 var arr = [8, 4, 1, 0, 2];
 insertionSort(arr);
 // => [ 0, 1, 2, 4, 8 ]
+
+/*
+[ 4, 8, 1, 0, 2 ]
+[ 1, 4, 8, 0, 2 ]
+[ 0, 1, 4, 8, 2 ]
+[ 0, 1, 2, 4, 8 ]
+*/
