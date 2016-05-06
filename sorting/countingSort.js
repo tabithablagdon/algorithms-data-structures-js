@@ -10,7 +10,7 @@ var countingSort = function(arr, min, max) {
   }
 
   for (i = min; i <= max; i++) { // sort integers in new array
-  	while (count[i] > 0) {
+    while (count[i] > 0) {
   	  result[j++] = i;
   	  count[i]--;
   	}
