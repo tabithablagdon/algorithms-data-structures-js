@@ -13,7 +13,7 @@ var countingSort = function(arr, min, max) {
     while (count[i] > 0) {
       result[j++] = i;
       count[i]--;
-  	}
+    }
   }
   return result;
 };
