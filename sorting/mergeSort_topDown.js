@@ -1,3 +1,4 @@
+// Top down implementation using recursion
 // This code can be wrapped in a MergeSort function - separated for simplicity
 
 var merge = function(left, right) {
