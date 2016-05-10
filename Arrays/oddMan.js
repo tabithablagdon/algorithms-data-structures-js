@@ -20,7 +20,7 @@ Assume that:
 
 var oddMan = function(A) {
   var result;
-  for (var i = 0; i < A.length; i+=2) {
+  for (var i = 0; i < A.length; i++) {
   	result ^= A[i];
   }
   return result;
