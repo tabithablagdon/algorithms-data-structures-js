@@ -7,12 +7,10 @@ function destroyer(arr) {
   var array1 = args[0];
   var values = args.slice(1);
   
-  var newArray = array1.filter(function(val) {
+  return array1.filter(function(val) {
     return values.indexOf(val) < 0;
    
   });
-
-  return newArray;
   
 }
 
