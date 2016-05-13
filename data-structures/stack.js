@@ -20,16 +20,16 @@ var Stack = function() {
 // revealing prototype pattern
 Stack.prototype = (function(){
   var push = function(element) {
-  	 this.dataStore[this.top++] = element;
+    this.dataStore[this.top++] = element;
   };
   
   var pop = function() {
-  	 var popped = null;
-  	 if (this.top > 0) {
-  	   popped = this.dataStore[--this.top];
-  	   delete this.dataStore[this.top];
-  	 }
-  	 return popped;
+    var popped = null;
+    if (this.top > 0) {
+      popped = this.dataStore[--this.top];
+      delete this.dataStore[this.top];
+    }
+    return popped;
   };
   
   var peek = function() {
