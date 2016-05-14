@@ -14,9 +14,9 @@ var binarySearchArray = function(array, num) {
   if (num === array[mid]) {
   	return mid;
   } else if(num < array[mid]) {
-  	return sorted(array.slice(0, mid), num);
+  	return binarySearchArray(array.slice(0, mid), num);
   } else if (num > array[mid]) {
-    return sorted(array.slice(mid, array.length), num) + mid;
+    return binarySearchArray(array.slice(mid, array.length), num) + mid;
   } else {
     return -1;	
   }
@@ -24,8 +24,8 @@ var binarySearchArray = function(array, num) {
 
 var sortedArray = [39, 41, 42, 43, 44, 45, 50, 52, 53, 63, 74, 77, 78, 83, 93];
 
-sorted(sortedArray, 63);
+//binarySearchArray(sortedArray, 63);
 // => 9
 
-sorted(sortedArray, 10);
+//binarySearchArray(sortedArray, 10);
 // => -1
