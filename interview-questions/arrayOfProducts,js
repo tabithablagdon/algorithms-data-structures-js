@@ -4,6 +4,8 @@
 // var arr = [2, 7, 3, 4];
 // var asnwer = [7*3*4, 2*3*4, 2*7*4, 2*7*3];
 
+// brute force approach - O(N^2) Time Complexity, O(N) Space Complexity
+
 function arrayOfProducts(array) {
   var newArray = [];
   for (var i = 0, len = array.length; i < len; i++) {
@@ -17,6 +19,8 @@ function arrayOfProducts(array) {
   }
   return newArray;    
 }
+
+// optimal solution - O(N) Time Complexity, O(N) Space Complexity
 
 function arrayOfProduct2(array) {
   var prefix = []; 
