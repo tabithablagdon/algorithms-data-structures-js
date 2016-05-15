@@ -15,27 +15,29 @@ Queue.prototype = (function() {
  };
  
  var dequeue = function() {
-   var priority = 0;
-   var minCode = this.dataStore[0].code;
-   for (var i = 1; i < this.dataStore.length; i++) {
-     if (this.dataStore[i].code < minCode) {
-       minCode = this.dataStore[i].code;
-       priority = i;
-     }
+   if (this.dataStore.length !== 0) {
+     return this.dataStore.shift(); 
    }
-   return this.dataStore.splice(priority, 1);
  };
  
  var front = function() {
-   return this.dataStore[0];
+    var element = null;
+    if (this.dataStore.length) {
+      element = this.dataStore[0];
+    }
+    return element;
  };
  
  var back = function() {
-   return this.dataStore[this.dataStore.length - 1];	
+    var element = null;
+    if (this.dataStore.length) {
+      element = this.dataStore[this.dataStore.length - 1];
+    }
+    return element;
  };
  
  var empty = function() {
-   return this.dataStore.length === 0 ? true : false;	
+   return this.dataStore.length === 0;
  };
 
  return {
