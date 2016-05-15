@@ -6,20 +6,20 @@ ments. After examining all the elements, the smallest element is placed in the f
 sition of the array, and the algorithm moves to the second position. 
 */
 
-var selectionSort = function(collection) {
+var selectionSort = function(arr) {
   var min, temp;
-  for (var i = 0; i < collection.length; i++) {
+  for (var i = 0, len = arr.length; i < len; i++) {
     min = i;
-    for (var j = i + 1; j < collection.length; j++) {
-      if (collection[j] < collection[min]) {
-      	min = j;
-      }
-      temp = collection[i];
-      collection[i] = collection[min];
-      collection[min] = temp;
+    for (var j = i+1; j < len; j++) {
+      if (arr[j] < arr[min]) {
+        min = j;
+      }  
     }
+    temp = arr[i];
+    arr[i] = arr[min];
+    arr[min] = temp;
   }
-  return collection;
+  return arr;
 };
 
 var arr = [10, 2, 5, 22, -2, -10];
