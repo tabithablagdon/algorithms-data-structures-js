@@ -7,12 +7,14 @@ var Node = function(element) {
 };
 
 // Linked List Constructor
-var LList = function() {
+var DoublyLList = function() {
   this.head = new Node('head');
+  this.tail = null;
+  this.numItems = 0;
 };
 
-LList.prototype = {
-  constructor: LList,
+DoublyLList.prototype = {
+  constructor: DoublyLList,
   find: function(item) {
   	var currNode = this.head;
   	while (currNode.element !== item) {
