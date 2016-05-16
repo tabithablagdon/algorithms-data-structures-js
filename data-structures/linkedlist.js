@@ -16,8 +16,8 @@ var LList = function() {
 LList.prototype = {
   constructor: LList,
   append: function(element) {
-  	var node = new Node(element);
-  	var currNode = this.head;
+    var node = new Node(element);
+    var currNode = this.head;
     while (currNode.next) {
       currNode = currNode.next;	
     }
@@ -25,38 +25,38 @@ LList.prototype = {
     this.numItems++;
   }, 
   find: function(item) {
-  	var currNode = this.head;
-  	while (currNode.element !== item) {
-  	  currNode = currNode.next;	
-  	}
-  	return currNode;
+    var currNode = this.head;
+    while (currNode.element !== item) {
+      currNode = currNode.next;	
+    }
+    return currNode;
   }, 
   findPrevious: function(item) {
-  	var currNode = this.head;
-  	while (currNode.next && currNode.next.element !== item) {
-  	  currNode = currNode.next;	
-  	}
-  	return currNode;
+    var currNode = this.head;
+    while (currNode.next && currNode.next.element !== item) {
+      currNode = currNode.next;	
+    }
+    return currNode;
   }, 
   // insert item after a specified element - can refactor for position
   insert: function(element, item) {
-  	var afterNode = this.find(item);
-  	var newNode = new Node(element);
-  	if (afterNode !== null) {
-  	  newNode.next = afterNode.next;
-  	  afterNode.next = newNode;
-  	  this.numItems++;
-  	  return true;
-  	} else {
-  	  return false;	
-  	}
+    var afterNode = this.find(item);
+    var newNode = new Node(element);
+    if (afterNode !== null) {
+      newNode.next = afterNode.next;
+      afterNode.next = newNode;
+      this.numItems++;
+      return true;
+    } else {
+      return false;	
+    }
   }, 
   remove: function(element) {
-  	var index = this.indexOf(element);
-  	if (index > -1) {
-  	  this.numItems--;
-  	  return this.removeAt(index);
-  	}
+    var index = this.indexOf(element);
+    if (index > -1) {
+      this.numItems--;
+      return this.removeAt(index);
+    }
   }, 
   removeAt: function(position) {
     if (position > -1 && position < this.numItems) {
@@ -91,15 +91,15 @@ LList.prototype = {
     return -1;
   }, 
   display: function() {
-  	var currNode = this.head;
-  	var elements = '';
+    var currNode = this.head;
+    var elements = '';
   	
-  	while (currNode.next) {
-  	  currNode.next.next !== null ? elements += currNode.next.element + ' -> ' : elements += currNode.next.element;
-  	  currNode = currNode.next;
-  	}
+    while (currNode.next) {
+      currNode.next.next !== null ? elements += currNode.next.element + ' -> ' : elements += currNode.next.element;
+      currNode = currNode.next;
+    }
   	
-  	return elements;
+    return elements;
   }, 
   size: function() {
     return this.numItems;	
