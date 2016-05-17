@@ -16,6 +16,19 @@ var BinarySearchTree = function() {
     }	
   };
   
+  var searchNode = function(node, key) {
+    if (node === null) {
+      return false;	
+    }
+    if (key < node.key) {
+      return searchNode(node.left, key);
+    } else if (key > node.key) {
+      return searchNode(node.right, key);	
+    } else {
+      return true;	
+    }
+  };
+  
   this.insert = function(key) {
   	var newNode = new Node(key);
   	
@@ -27,7 +40,8 @@ var BinarySearchTree = function() {
   };
   
   this.search = function(key) {
-  /// in progress	
+    return searchNode(root, key);
+    
   };
   
   this.inOrderTraverse = function(callback) {
