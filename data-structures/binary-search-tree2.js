@@ -29,6 +29,49 @@ var BinarySearchTree = function() {
     }
   };
   
+  var findMinNode = function() {
+    if (root) {
+      var current = root;
+      while (current.left) {
+        current = current.left;  	
+      }
+      return current;
+    }
+    return null;	
+  };
+  
+  var removeNode = function(node, key) {
+    if (node === null) {
+      return null;
+    } if (key < node.key) {
+      node.left = removeNode(node.left, key);
+      return node;
+    } else if (key > node.key) {
+      node.right = removeNode(node.key, key);
+      return node;
+    } else { 
+      // if node is a leaf node
+      if (!node.left && node.right) {
+        node = null;
+        return node;
+      }
+      // if node only has one child
+      if (!node.left) {
+        node = node.right;
+        return node;
+      } else if (!node.right) {
+        node = node.left;
+        return node;
+      }
+      // node with two children
+      var aux = findMinNode(node.right);
+      node.key = aux.key;
+      node.right = removeNode(node.right, aux.key);
+      return node;
+    }
+  };
+ 
+  
   this.insert = function(key) {
   	var newNode = new Node(key);
   	
@@ -100,7 +143,7 @@ var BinarySearchTree = function() {
   };
   
   this.remove = function(key) {
-  /// in progress	
+    root = removeNode(root, key);
   };
   
 };
