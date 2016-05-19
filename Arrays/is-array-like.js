@@ -3,11 +3,7 @@
 
 
 function isArrayLike(arr) {
-  if (arr && 
-    typeof arr === "object" &&
-    isFinite(arr.length) && 
-    arr.length >= 0 && 
-    arr.length === Math.floor(arr.length)) {
+  if (arr &&typeof arr === "object" && isFinite(arr.length) && arr.length >= 0 && arr.length === Math.floor(arr.length)) {
     return true;
   } else {
     return false;
