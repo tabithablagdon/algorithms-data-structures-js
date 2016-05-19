@@ -1,5 +1,5 @@
 /* 
-Code by Tee Blagdon
+FIBONACCI WITHOUT RECURSION
 
 function fibonacci will accept a number (num) and return the num-th number positioned in the fibonacci sequence
 
