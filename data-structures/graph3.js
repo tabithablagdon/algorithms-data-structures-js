@@ -1,7 +1,5 @@
 // Abstract Implementation of Graph Class
 // AdjacentList Method
-//// Commented out console.logs in bfs and dfs methods are to help you
-/// follow the search flow.  Uncomment to see flow or free to remove.
 
 var Graph = function() {
   this.vertices = [];
