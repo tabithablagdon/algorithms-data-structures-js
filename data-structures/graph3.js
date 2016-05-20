@@ -1,9 +1,11 @@
-// Simpler Graph Class implentation using an object as the adjacent list
+// Abstract Implementation of Graph Class
+// AdjacentList Method
+//// Uncomment console.logs in bfs and dfs methods to help follow search flow
 
-// Adjacent List representation
 
 var Graph = function() {
   this.vertices = [];
+  // dictionary will store name of vertex as key and list of adjacent vertices as a value
   this.adjList = {};
 };
 
@@ -29,9 +31,54 @@ Graph.prototype = {
       str += '\n';
     }
     return str;
+  }, 
+  bfs: function(v, callback) {
+  	var verticesArr = this.vertices;
+  	
+  	// initialize an array 'colors' representing each vertices to track visited vertices
+  	//// white - not visited
+  	//// grey - discovered, but not explored
+  	//// black - explored (closed out)
+  	
+    var initializer = function() {
+      var color = [];
+      for (var i = 0; i < verticesArr.length; i++) {
+        color[verticesArr[i]] = 'white';	
+      }
+      return color;
+    };
+    
+    var colorVertices = initializer();
+    var queue = [];
+    
+    queue.push(v); // start search 
+    // console.log('BFS STARTING AT VERTEX: ' + v + '\n');
+    
+    while (queue.length !== 0) {
+      var u = queue.shift();
+      var neighbors = this.adjList[u]; 
+      
+      colorVertices[u] = 'grey';
+      // console.log('NOW VISITING: ' + u);
+      
+      for (var i = 0; i < neighbors.length; i++) {
+        if (colorVertices[neighbors[i]] === 'white') {
+          // console.log(neighbors[i] + ' is white - not visited');
+          colorVertices[neighbors[i]] = 'grey';
+          // console.log(neighbors[i] + ' is now marked grey and added to queue');
+          queue.push(neighbors[i]);
+        }  	
+      }
+      
+      colorVertices[u] = 'black';
+      // console.log('Queue is now ' + queue);
+      
+      if (callback) { // optional - will execute if one passed
+        callback(u);	
+      }
+    }
   }
 };
-
 
 var graph = new Graph();
 var myVertices = ['A','B','C','D','E','F','G','H','I']; //{7}
@@ -39,7 +86,11 @@ for (var i=0; i<myVertices.length; i++){ //{8}
   graph.addVertex(myVertices[i]);
 }
 
-graph.addEdge('A', 'B'); //{9}
+var print = function(val) {
+  console.log('EXPLORED VERTEX: ' + val + '\n');	
+};
+
+graph.addEdge('A', 'B');
 graph.addEdge('A', 'C');
 graph.addEdge('A', 'D');
 graph.addEdge('C', 'D');
@@ -51,3 +102,25 @@ graph.addEdge('B', 'F');
 graph.addEdge('E', 'I');
 
 console.log(graph.toString());
+
+// A -> B C D 
+// B -> A E F 
+// C -> A D G 
+// D -> A C G H 
+// E -> B I 
+// F -> B 
+// G -> C D 
+// H -> D 
+// I -> E
+
+graph.bfs(myVertices[0], print);
+
+// EXPLORED VERTEX: A
+// EXPLORED VERTEX: B
+// EXPLORED VERTEX: C
+// EXPLORED VERTEX: D
+// EXPLORED VERTEX: E
+// EXPLORED VERTEX: F
+// EXPLORED VERTEX: G
+// EXPLORED VERTEX: H
+// EXPLORED VERTEX: I
