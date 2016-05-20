@@ -8,7 +8,7 @@ lower values float to the left.
 bubbleSort has O(N^2) time complexity
 */
 
-var bubble = function(arr) {
+var bubbleSort = function(arr) {
   var temp;
   for (var i = 0, len = arr.length; i < len; i++) {
     for (var j = 0; j < len; j++) {
@@ -21,6 +21,23 @@ var bubble = function(arr) {
   }
   return arr;
 };
+
+// SLIGHTLY IMPROVED BUBBLE SORT
+var bubbleSort = function(arr) {
+  var len = arr.length;
+  for(var i = 0; i < len-1; i++) {
+    for (var j = 0; j < len-1-i; j++) { // reduce # of passes from inner to avoid extra inner loopoing
+      if (arr[j] > arr[j+1]) {
+        var temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+      }
+    }	
+  }
+  return arr;
+};
+
+
 
 var arr = [1, 5, 2, 10, 3, 7, -2, -6];
 bubbleSort(arr);
