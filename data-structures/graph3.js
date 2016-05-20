@@ -1,11 +1,10 @@
 // Abstract Implementation of Graph Class
 // AdjacentList Method
-//// Uncomment console.logs in bfs and dfs methods to help follow search flow
-
+//// Commented out console.logs in bfs and dfs methods are to help you
+/// follow the search flow.  Uncomment to see flow or free to remove.
 
 var Graph = function() {
   this.vertices = [];
-  // dictionary will store name of vertex as key and list of adjacent vertices as a value
   this.adjList = {};
 };
 
@@ -53,12 +52,11 @@ Graph.prototype = {
     var d = [];
     var pred = [];
     
-    queue.push(v); // start search 
-    // console.log('BFS STARTING AT VERTEX: ' + v + '\n');
+    queue.push(v); // start search at vertex v
     
     for (var i = 0; i < verticesArr.length; i++) {
-      d[vertices[i]] = 0;
-      pred[vertices[i]] = null;
+      d[verticesArr[i]] = 0;
+      pred[verticesArr[i]] = null;
     }
     
     while (queue.length !== 0) {
@@ -66,13 +64,10 @@ Graph.prototype = {
       var neighbors = this.adjList[u]; 
       
       colorVertices[u] = 'grey';
-      // console.log('NOW VISITING: ' + u);
       
       for (i = 0; i < neighbors.length; i++) {
         if (colorVertices[neighbors[i]] === 'white') {
-          // console.log(neighbors[i] + ' is white - not visited');
           colorVertices[neighbors[i]] = 'grey';
-          // console.log(neighbors[i] + ' is now marked grey and added to queue');
           d[neighbors[i]] = d[u] + 1;
           pred[neighbors[i]] = u;
           
@@ -81,15 +76,35 @@ Graph.prototype = {
       }
       
       colorVertices[u] = 'black';
-      // console.log('Queue is now ' + queue);
       
       if (callback) { // optional - will execute if one passed
         callback(u);	
       }
-      return {
-        distances: d, 
-        predecessors: pred
-      };
+    }
+    return {
+      distances: d, 
+      predecessors: pred
+    }
+  }, 
+  // shortestPathTo returns shortestPath to each vertices from vertex x in # of edges
+  shortestPathTo: function(v) {
+    var fromVertex = v;
+    var shortest = this.bfs(v);
+    for (var i = 1; i < this.vertices.length; i++) {
+      var toVertex = this.vertices[i];
+      var path = []; //new stack to store path values
+      
+      for (var j = toVertex; j !== fromVertex; j = shortest.predecessors[j]) {
+        path.push(j);	
+      }
+      
+      path.push(fromVertex);
+      var s = path.pop();
+      
+      while (path.length !== 0) {
+        s += ' - ' + path.pop();	
+      }
+      console.log(s);
     }
   }
 };
@@ -138,3 +153,16 @@ graph.bfs(myVertices[0], print);
 // EXPLORED VERTEX: G
 // EXPLORED VERTEX: H
 // EXPLORED VERTEX: I
+// => { distances: [ A: 0, B: 1, C: 1, D: 1, E: 2, F: 2, G: 2, H: 2, I: 3 ],
+//   predecessors: [ A: null, B: 'A', C: 'A', D: 'A', E: 'B', F: 'B', G: 'C', H: 'D', I: 'E' ] }
+
+graph.shortestPathTo(myVertices[2]);
+
+// A - B
+// A - C
+// A - D
+// A - B - E
+// A - B - F
+// A - C - G
+// A - D - H
+// A - B - E - I
