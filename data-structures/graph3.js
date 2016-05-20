@@ -1,5 +1,9 @@
 // Abstract Implementation of Graph Class
 // AdjacentList Method
+// initialize an array 'colors' representing each vertices to track visited vertices
+//// white - not visited
+//// grey - discovered, but not explored
+//// black - explored (closed out)
 
 var Graph = function() {
   this.vertices = [];
@@ -29,13 +33,41 @@ Graph.prototype = {
     }
     return str;
   }, 
+  dfs: function(callback) {
+    var verticesArr = this.vertices;
+    var adjList = this.adjList;
+    
+    var initializer = function() {
+      var color = [];
+      for (var i = 0; i < verticesArr.length; i++) {
+        color[verticesArr[i]] = 'white';	
+      }
+      return color;
+    };
+    var colorVertices = initializer();
+    
+    var dfsVisit = function(u, colorVertices, callback) {
+      colorVertices[u] = 'grey';
+      if (callback) {
+        callback(u);	
+      }
+      var neighbors = adjList[u];
+      for (i = 0; i < neighbors.length; i++) {
+        if (colorVertices[neighbors[i]] === 'white') {
+          dfsVisit(neighbors[i], colorVertices, callback);
+        }	
+      }
+      colorVertices[u] = 'black';
+    };
+    
+    for (i = 0; i < this.vertices.length; i++) {
+      if (colorVertices[this.vertices[i]] === 'white') {
+        dfsVisit(this.vertices[i], colorVertices, callback);	
+      }
+    }
+  }, 
   bfs: function(v, callback) {
   	var verticesArr = this.vertices;
-  	
-  	// initialize an array 'colors' representing each vertices to track visited vertices
-  	//// white - not visited
-  	//// grey - discovered, but not explored
-  	//// black - explored (closed out)
   	
     var initializer = function() {
       var color = [];
@@ -114,7 +146,7 @@ for (var i=0; i<myVertices.length; i++){ //{8}
 }
 
 var print = function(val) {
-  console.log('EXPLORED VERTEX: ' + val + '\n');	
+  console.log('EXPLORED VERTEX: ' + val);	
 };
 
 graph.addEdge('A', 'B');
@@ -140,7 +172,7 @@ console.log(graph.toString());
 // H -> D 
 // I -> E
 
-graph.bfs(myVertices[0], print);
+//graph.bfs(myVertices[0], print);
 
 // EXPLORED VERTEX: A
 // EXPLORED VERTEX: B
@@ -154,7 +186,7 @@ graph.bfs(myVertices[0], print);
 // => { distances: [ A: 0, B: 1, C: 1, D: 1, E: 2, F: 2, G: 2, H: 2, I: 3 ],
 //   predecessors: [ A: null, B: 'A', C: 'A', D: 'A', E: 'B', F: 'B', G: 'C', H: 'D', I: 'E' ] }
 
-graph.shortestPathTo(myVertices[2]);
+//graph.shortestPathTo(myVertices[2]);
 
 // A - B
 // A - C
@@ -164,3 +196,15 @@ graph.shortestPathTo(myVertices[2]);
 // A - C - G
 // A - D - H
 // A - B - E - I
+
+graph.dfs(print);
+
+// EXPLORED VERTEX: A
+// EXPLORED VERTEX: B
+// EXPLORED VERTEX: E
+// EXPLORED VERTEX: I
+// EXPLORED VERTEX: F
+// EXPLORED VERTEX: C
+// EXPLORED VERTEX: D
+// EXPLORED VERTEX: G
+// EXPLORED VERTEX: H
