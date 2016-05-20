@@ -25,8 +25,8 @@ var bubbleSort = function(arr) {
 // SLIGHTLY IMPROVED BUBBLE SORT
 var bubbleSort = function(arr) {
   var len = arr.length;
-  for(var i = 0; i < len-1; i++) {
-    for (var j = 0; j < len-1-i; j++) { // reduce # of passes from inner to avoid extra inner loopoing
+  for(var i = 0; i < len; i++) {
+    for (var j = 0; j < len-i; j++) { // reduce # of passes from inner to avoid extra inner loopoing
       if (arr[j] > arr[j+1]) {
         var temp = arr[j];
         arr[j] = arr[j+1];
