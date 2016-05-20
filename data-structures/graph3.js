@@ -50,9 +50,16 @@ Graph.prototype = {
     
     var colorVertices = initializer();
     var queue = [];
+    var d = [];
+    var pred = [];
     
     queue.push(v); // start search 
     // console.log('BFS STARTING AT VERTEX: ' + v + '\n');
+    
+    for (var i = 0; i < verticesArr.length; i++) {
+      d[vertices[i]] = 0;
+      pred[vertices[i]] = null;
+    }
     
     while (queue.length !== 0) {
       var u = queue.shift();
@@ -61,11 +68,14 @@ Graph.prototype = {
       colorVertices[u] = 'grey';
       // console.log('NOW VISITING: ' + u);
       
-      for (var i = 0; i < neighbors.length; i++) {
+      for (i = 0; i < neighbors.length; i++) {
         if (colorVertices[neighbors[i]] === 'white') {
           // console.log(neighbors[i] + ' is white - not visited');
           colorVertices[neighbors[i]] = 'grey';
           // console.log(neighbors[i] + ' is now marked grey and added to queue');
+          d[neighbors[i]] = d[u] + 1;
+          pred[neighbors[i]] = u;
+          
           queue.push(neighbors[i]);
         }  	
       }
@@ -76,6 +86,10 @@ Graph.prototype = {
       if (callback) { // optional - will execute if one passed
         callback(u);	
       }
+      return {
+        distances: d, 
+        predecessors: pred
+      };
     }
   }
 };
