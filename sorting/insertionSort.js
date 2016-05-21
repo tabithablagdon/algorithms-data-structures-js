@@ -6,8 +6,8 @@ on the left side of the array
 
 var insertionSort = function(collection) {
   var temp;
-  for (var i = 1; i < collection.length; i++) {
-    for (var j = 0; j < i; j++) {
+  for (let i = 1; i < collection.length; i++) {
+    for (let j = 0; j < i; j++) {
       if (collection[i] < collection[j]) {
       	temp = collection[j];
       	collection[j] = collection[i];
