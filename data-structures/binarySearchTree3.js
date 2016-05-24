@@ -1,5 +1,3 @@
-// Tee's implementation of BST
-
 var Node = function(key) {
   this.key = key;
   this.left = null;
@@ -77,12 +75,13 @@ BST.prototype = (function() {
         return node;
       }
       // Node has two children
-      var tempNode = getMinNode(node.right); // tempNode is node to replace the current node being deleted
+      var tempNode = getMin(node.right); // tempNode is node to replace the current node being deleted
       node.key = tempNode.key;
       node.right = removeNode(node.right, tempNode.key);
       return node;
     }
   };
+
   
   var inOrder = function(callback) {
     inOrderTraverse(this.root, callback);
@@ -119,6 +118,7 @@ BST.prototype = (function() {
       callback(node.key);
     }		
   };
+  //// NON-RECURSIVE SEARCH ////
   
   var search = function(key) {
     let node = this.root;
@@ -131,6 +131,15 @@ BST.prototype = (function() {
     return 'Not Found';
   };
   
+  //// RECURSIVE SEARCH ////
+  
+  //var search = function(node, key) {
+  //  if (!node || key === node.key) {
+  //    return node;	
+  //  }
+  //  return node.key > key ? search(node.left, key) : search(node.right, key);
+  //};
+  
   var contains = function(key) {
   	let node = this.root;
     while (node) {
@@ -142,68 +151,63 @@ BST.prototype = (function() {
     return false;
   };
   
-  var getMinKey = function(node) {
-  	node = node || this.root;
-    if (!node) {
-      return null;	
+  var getMin = function(node) {
+    node = node || this.root;
+    while (node.left) {
+      node = node.left;	
+    }
+    return node;
+  };
+  
+  
+  var getMax = function(node) {
+    node = node || this.root;
+    while (node.right) {
+      node = node.right;	
+    }
+    return node;
+  };
+  
+  var successor = function(node) {
+    if (node.right) {
+      return getMin(node.right);	
     } else {
-      while (node.left) {
-        node = node.left;	
+      let ancestor = node.parent;
+      while (ancestor && ancestor.right === node) {
+        node = ancestor;
+        ancestor = ancestor.parent;
       }
-      return node.key;
+      return ancestor;
     }
   };
   
-  var getMinNode = function(node) {
-    node = node || this.root;
-    if (!node) {
-      return null;	
+  var predecessor = function(node) {
+    if (node.left) {
+      return getMax(node.left);	
     } else {
-      while (node.left) {
-        node = node.left;	
+      let ancestor = node.parent;
+      while (ancestor && ancestor.left === node) {
+        node = ancestor;
+        ancestor = ancestor.parent;
       }
-      return node;
-    }  	
-  };
-  
-  var getMaxKey = function(node) {
-  	node = node || this.root;
-    if (!node) {
-      return null;	
-    } else {
-      while (node.right) {
-        node = node.right;	
-      }
-      return node.key;
+      return ancestor;
     }
-  };
-  
-  var getMaxNode = function(node) {
-    node = node || this.root;
-    if (!node) {
-      return null;	
-    } else {
-      while (node.right) {
-        node = node.right;	
-      }
-      return node;
-    }  	
   };
 	
   return {
   	constructor: BST, 
     insert: insert, 
     inOrder: inOrder, 
-    getMinKey: getMinKey, 
-    getMinNode: getMinNode, 
-    getMaxKey: getMaxKey, 
-    getMaxNode: getMaxNode, 
+    getMin: getMin, 
+    getMax: getMax, 
     remove: remove, 
     inOrder: inOrder, 
     preOrder: preOrder, 
     postOrder: postOrder,
     search: search,
-    contains: contains
+    contains: contains, 
+    successor: successor, 
+    predecessor: predecessor
   };
   	
 })();
@@ -216,9 +220,7 @@ tree.insert(3);
 tree.insert(10);
 tree.insert(22);
 tree.insert(2);
-tree.insert(26);
-tree.insert(30);
-tree.insert(14);
 
 tree.contains(14);
 // => true
+
