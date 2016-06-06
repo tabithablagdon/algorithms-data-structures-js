@@ -9,21 +9,21 @@ var Set = function() {
   };
   
   this.add = function(value) {
-  	if (!this.has(value)) {
+    if (!this.has(value)) {
       items[value] = value; // added as key/value to help search for value if stored as key too
       length++;
       return true;
-  	}
-  	return false;
+    }
+    return false;
   };
   
   this.remove = function(value) {
-  	if (this.has(value)) {
-  	  delete items[value];
-  	  length--;
-  	  return true;
-  	}
-  	return false;
+    if (this.has(value)) {
+      delete items[value];
+      length--;
+      return true;
+    }
+    return false;
   };
   
   this.clear = function() {
@@ -32,8 +32,7 @@ var Set = function() {
   };
   
   this.size = function() {
-  	return length;
-  	// or return Object.keys(items).length;
+    return length;  // or return Object.keys(items).length;
   }
   
   this.values = function() {
