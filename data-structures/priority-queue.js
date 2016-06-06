@@ -11,8 +11,8 @@ var PriorityQueue = function() {
   this.numItems = 0;
   
   var QueueElement = function(element, priority) {
-  	this.element = element;
-  	this.priority = priority;
+    this.element = element;
+    this.priority = priority;
   }
   
   this.enqueue = function(element, priority) {
@@ -38,7 +38,7 @@ var PriorityQueue = function() {
   }
   
   this.dequeue = function() {
-  	this.numItems--;
+    this.numItems--;
     return this.dataStore.shift();	
   }
   
@@ -59,7 +59,7 @@ var PriorityQueue = function() {
   }
   
   this.isEmpty = function() {
-  	return this.numItems === 0;
+    return this.numItems === 0;
   }
   
   this.size = function() {
@@ -67,8 +67,8 @@ var PriorityQueue = function() {
   }
   
   this.clear = function() {
-  	this.numItems = 0;
-  	this.dataStore = [];
+    this.numItems = 0;
+    this.dataStore = [];
   }
   
   this.print = function() {
