@@ -32,9 +32,9 @@ function palindromePermutation(str) {
 
   // Check to see if even length word has all even count letters or odd word has only one odd count letter
   for (let key in letterCount) {
-	  if (letterCount[key] % 2 !== 0) {
-	    return len % 2 === 0 ? false : true;
-	  }
+    if (letterCount[key] % 2 !== 0) {
+      return len % 2 === 0 ? false : true; 
+    }
   }
 }
 
