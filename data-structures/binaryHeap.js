@@ -1,11 +1,10 @@
-// Implementation of a Binary Heap - callback for comparing algorithm is optional
+// Implementation of a Binary Heap (min heap)
 
-function BinaryHeap (callback) {
+function BinaryHeap () {
   this._heap = [];
-  this.callback = callback || null;
 
-  this._compare = function (i, j, callback) {
-  	return callback ? callback(i, j) : i < j;
+  this._compare = function (i, j) { 
+  	return i < j; 
   };
 
   this._findParentIndex = function(childIndex) {
@@ -24,15 +23,20 @@ function BinaryHeap (callback) {
 	}
 }
 
+// This function works just fine and shouldn't be modified
+BinaryHeap.prototype.getRoot = function () {
+  return this._heap[0];
+}
+
 BinaryHeap.prototype.insert = function (value) {
 
-  let len = this._heap.length;
-  let currentIndex = len > 0 ? len : 0;
-  let parentIndex = this._findParentIndex(currentIndex);
+  var len = this._heap.length;
+  var currentIndex = len > 0 ? len : 0;
+  var parentIndex = this._findParentIndex(currentIndex);
 
   this._heap[currentIndex] = value;
 
-  while (parentIndex > 0 && (this._compare(this._heap[currentIndex], this._heap[parentIndex], this.callback))) {
+  while (this._compare(this._heap[currentIndex], this._heap[parentIndex])) {
     this._swap(parentIndex, currentIndex);
 
     currentIndex = parentIndex;
@@ -44,22 +48,22 @@ BinaryHeap.prototype.insert = function (value) {
 
 BinaryHeap.prototype.removeRoot = function () {
 
-  let len = this._heap.length;
-  let root = this._heap[0];
-  let currentIndex = 0;
-  let childrenIndices = this._findChildrenIndices(currentIndex);
+  var len = this._heap.length;
+  var root = this._heap[0];
+  var currentIndex = 0;
+  var childrenIndices = this._findChildrenIndices(currentIndex);
 
   if (len === 0) {
     return undefined;
   } else if (len < 3) {
-    return this._heap.splice(0, 1);
+    return this._heap.splice(0, 1)[0];
   }
-
+  
   // Remove root node and replace with last value
   this._heap[0] = this._heap.pop();
 
-  while (this._compare(this._heap[childrenIndices[0]], this._heap[currentIndex], this.callback) || this._compare(this._heap[childrenIndices[1]], this._heap[currentIndex], this.callback)) {
-  	let smallestChildNode = this._compare(this._heap[childrenIndices[0]], this._heap[childrenIndices[1]], this.callback) ? childrenIndices[0] : childrenIndices[1];
+  while (this._compare(this._heap[childrenIndices[0]], this._heap[currentIndex]) || this._compare(this._heap[childrenIndices[1]], this._heap[currentIndex])) {
+  	var smallestChildNode = this._compare(this._heap[childrenIndices[0]], this._heap[childrenIndices[1]]) ? childrenIndices[0] : childrenIndices[1];
 
     if (this._heap[currentIndex] > this._heap[smallestChildNode]) {
       this._swap(smallestChildNode, currentIndex);
@@ -69,5 +73,6 @@ BinaryHeap.prototype.removeRoot = function () {
     childrenIndices = this._findChildrenIndices(currentIndex);
 
   }
+
   return root;
 }
