@@ -26,11 +26,7 @@ function palindromePermutation(str) {
   } else {
   	// Create hash table to count number of letters
     for (let i = 0; i < len; i++) {
-      if (!letterCount.hasOwnProperty(str.charAt(i))) {
-        letterCount[str.charAt(i)] = 1;
-      } else {
-        letterCount[str.charAt(i)]++;
-      }
+      letterCount.hasOwnProperty(str.charAt(i)) ? letterCount[str.charAt(i)]++: letterCount[str.charAt(i)] = 1;
     }
   }
 
