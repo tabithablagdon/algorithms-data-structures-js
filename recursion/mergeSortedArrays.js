@@ -1,5 +1,7 @@
 // Question (from InterviewCake): We have our lists of orders sorted numerically already, in arrays. Write a function to merge our arrays of orders into one sorted array.
 
+// Assumptions: All values are integers and all arguments are arrays
+
 var myArray     = [3, 4, 6, 10, 11, 15];
 var alicesArray = [1, 5, 8, 12, 14, 19];
 
