@@ -1,3 +1,3 @@
 # JavaScript-Functions
 
-Collection of JavaScript utlity functions, methods, algorithms, and simple games that I've written to learn JavaScript.  I have saved a lot of these snippets to refer back to in the future.
+Data structures implemented, algorithms that I've solved, and simple games that written.  I have saved a lot of these snippets to refer back to in the future.
