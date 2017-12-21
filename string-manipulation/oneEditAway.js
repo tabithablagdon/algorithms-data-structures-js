@@ -1,4 +1,5 @@
 // Write a function that takes two strings and returns whether the strings are one character removal, insert, or addition away from being equal.
+// Assume inputs are all valid string inputs
 
 function isOneEditAway(str1, str2){
   const len1 = str1.length;
@@ -22,7 +23,6 @@ function isOneReplacementAway(str1, str2){
   for (let i = 0, len = str1.length; i < len; i++) {
     if (str1.charAt(i) !== str2.charAt(i)) {
       if (foundDifference) return false;
-      
       foundDifference = true;
     }
   }
@@ -37,7 +37,6 @@ function isOneInsertOrRemoveAway(shorterStr, longerStr){
   while (indexShorter <= shorterStr.length && indexLonger <= longerStr.length) {
     if (longerStr[indexLonger] !== shorterStr[indexShorter]) {
       if (indexShorter !== indexLonger) return false;
-      
       indexLonger++;
     } else {
       indexShorter++;
