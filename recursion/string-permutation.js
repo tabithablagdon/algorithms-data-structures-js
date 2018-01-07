@@ -29,6 +29,31 @@ function getPermutations(str) {
   return permutations;
 }
 
+// Another way - build from substrings
+function getPermutations(str) {
+  let permutations = [];
+  // base case
+  if (str.length === 0) {
+    permutations.push('');
+    return permutations;
+  }
+  
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charAt(i);
+    let substr = str.substring(0,i) + str.substring(i+1);
+    // find all permutations of its substring
+    let substringPermutes = getPermutations(substr);
+    
+    // prepend the selected character to the beginning of each substring permutation
+    substringPermutes.forEach(word => {
+      permutations.push(char + word);
+    });
+  }
+  
+  // return all the permutations
+  return permutations;
+}
+
 getPermutations('grits'); 
 // [ 'grit',
 // 'rgit',
