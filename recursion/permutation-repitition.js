@@ -7,6 +7,9 @@
  * @return {[Array]}        [2D array of possible outcomes]
  */
  
+// Permutation with repitition
+// O(n^n) time
+
 let findRoundCombos = function(values, n = values.length) {
   let combos = [];
   
