@@ -19,7 +19,7 @@ var multiply = function(a, b) {
   
   // if the smaller number is even, double the product so far
   // if smaller number is odd, double the product so far and add the bigger number
-  productSoFar += (smallerNum % 2 === 0 ? productSoFar : productSoFar + largerNum)
+  productSoFar += (smallerNum % 2 === 0 ? productSoFar : productSoFar + largerNum);
   
   return productSoFar;
 };
